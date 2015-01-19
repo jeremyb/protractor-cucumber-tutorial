@@ -1,0 +1,18 @@
+<a class="btn btn-default" ui-sref="catalog">
+    Back to results
+</a>
+
+<h2>{{ product.title }}</h2>
+<img ng-src="http://knpuniversity.com/{{ product.previewImage }}" alt="" class="img-thumbnail pull-right"/>
+<p>
+    {{ product.description }}
+</p>
+<p>
+    <i class="glyphicon glyphicon-time"></i>
+    {{ product.duration }}
+</p>
+<p>
+    <button class="btn btn-success" ng-click="addToCart()">
+        Add to cart ({{ product.price | currency }})
+    </button>
+</p>

@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="product in catalog">
+        <div class="thumbnail">
+            <img ng-src="http://knpuniversity.com/{{ product.previewImage }}" alt=""/>
+            <div class="caption">
+                <h3>
+                    <a ui-sref="catalog.show({id: product.id})">
+                        {{ product.title }}
+                    </a>
+                </h3>
+
+                <p>
+                    <a class="btn btn-primary pull-right" ui-sref="catalog.show({id: product.id})">
+                        {{ product.price | currency }}
+                    </a>
+
+                    <i class="glyphicon glyphicon-time"></i>
+                    {{ product.duration }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

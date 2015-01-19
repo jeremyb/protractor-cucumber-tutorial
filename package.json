@@ -1,0 +1,18 @@
+{
+  "name": "protractor-cucumber-tutorial",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node server",
+    "test": ""
+  },
+  "dependencies": {
+    "json-server": "latest"
+  },
+  "devDependencies": {
+    "phantomjs": "latest",
+    "protractor": "latest",
+    "cucumber": "latest",
+    "chai": "latest",
+    "chai-as-promised": "latest"
+  }
+}

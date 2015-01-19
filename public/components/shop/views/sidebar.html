@@ -1,0 +1,23 @@
+<h3>
+    <i class="glyphicon glyphicon-shopping-cart"></i>
+    My Cart
+</h3>
+
+<div ng-if="cart.hasItems()">
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="product in cart.getItems()">
+            <span class="badge">{{ product.price | currency }}</span>
+            {{ product.title }}
+        </li>
+    </ul>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <strong>Total : {{ cart.getTotal() | currency }}</strong>
+        </div>
+    </div>
+</div>
+
+<div ng-if="!cart.hasItems()">
+    <p>Your cart is empty</p>
+</div>
