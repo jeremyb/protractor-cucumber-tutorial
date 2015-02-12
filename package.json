@@ -9,10 +9,10 @@
     "json-server": "latest"
   },
   "devDependencies": {
-    "phantomjs": "latest",
-    "protractor": "latest",
+    "chai": "^1.7.0",
+    "chai-as-promised": "latest",
     "cucumber": "latest",
-    "chai": "latest",
-    "chai-as-promised": "latest"
+    "phantomjs": "latest",
+    "protractor": "latest"
   }
 }
