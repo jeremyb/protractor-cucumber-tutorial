@@ -5,8 +5,6 @@ exports.config = {
 
     capabilities: {
         browserName: 'phantomjs',
-        //'phantomjs.binary.path': './node_modules/phantomjs/bin/phantomjs',
-        //'phantomjs.cli.args': '--debug=true --webdriver --webdriver-logfile=webdriver.log --webdriver-loglevel=DEBUG',
         version: '',
         platform: 'ANY'
     },
@@ -14,7 +12,7 @@ exports.config = {
     framework: 'cucumber',
 
     specs: [
-        'public/components/shop/features/*.feature'
+        'features/*.feature'
     ],
 
     jasmineNodeOpts: {
@@ -22,7 +20,7 @@ exports.config = {
     },
 
     cucumberOpts: {
-        require: 'public/components/shop/features/stepDefinitions.js',
+        require: 'features/stepDefinitions.js',
         format: 'pretty' // or summary
     }
 };
