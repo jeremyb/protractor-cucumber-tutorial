@@ -1,20 +1,24 @@
-"use strict";
+(function (window, angular, undefined) {
 
-angular
-    .module('bddSample', [
-        'ngResource',
-        'ui.router',
-        'angular-storage',
-        'shop'
-    ])
+    'use strict';
 
-    .config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider
-            .otherwise('/');
+    angular
+        .module('bddSample', [
+            'ngResource',
+            'ui.router',
+            'angular-storage',
+            'shop'
+        ])
 
-        $stateProvider
-            .state('about', {
-                url: '/about',
-                templateUrl: '/components/common/views/about.html'
-            });
-    });
+        .config(function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider
+                .otherwise('/');
+
+            $stateProvider
+                .state('about', {
+                    url: '/about',
+                    templateUrl: '/components/common/views/about.html'
+                });
+        });
+
+})(window, window.angular);
