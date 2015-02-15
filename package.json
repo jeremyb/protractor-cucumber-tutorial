@@ -2,17 +2,19 @@
   "name": "protractor-cucumber-tutorial",
   "version": "0.1.0",
   "scripts": {
-    "start": "node server",
-    "test": ""
+    "start":   "node server",
+    "bower":   "bower install",
+    "phantom": "./node_modules/.bin/phantomjs --webdriver=4444",
+    "test":    "./node_modules/.bin/protractor config.js"
   },
   "dependencies": {
-    "json-server": "latest"
+    "json-server": "^0.6.0"
   },
   "devDependencies": {
-    "chai": "^1.7.0",
-    "chai-as-promised": "latest",
-    "cucumber": "latest",
-    "phantomjs": "latest",
-    "protractor": "latest"
+    "phantomjs":        "^1.9.0",
+    "protractor":       "^1.6.0",
+    "cucumber":         "^0.4.0",
+    "chai":             "^2.0.0",
+    "chai-as-promised": "^4.2.0"
   }
 }

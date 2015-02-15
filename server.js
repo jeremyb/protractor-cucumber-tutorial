@@ -1,6 +1,6 @@
-var server = require('json-server');
+var jsonServer = require('json-server');
 
-server({
+var resources = {
     catalog: [
         {
             id: 1,
@@ -27,4 +27,10 @@ server({
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab consectetur dignissimos esse exercitationem harum hic illo inventore, laboriosam magnam minus obcaecati, quasi quis quod sunt suscipit vitae voluptates! Consectetur, culpa?'
         }
     ]
-}).listen(3000);
+};
+
+var router = jsonServer.router(resources);
+var server = jsonServer.create();
+
+server.use(router);
+server.listen(3000);
