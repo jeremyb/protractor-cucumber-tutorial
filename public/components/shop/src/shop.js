@@ -1,15 +1,16 @@
-"use strict";
+(function () {
 
-angular
-    .module('shop', [
-        'ngResource',
-        'ui.router',
-        'angular-storage'
-    ])
+    'use strict';
 
-    .config(function ($stateProvider) {
-        $stateProvider
-            .state('catalog', {
+    angular
+        .module('shop', [
+            'ngResource',
+            'ui.router',
+            'angular-storage'
+        ])
+
+        .config(function ($stateProvider) {
+            $stateProvider.state('catalog', {
                 url: '/',
                 views: {
                     '@': {
@@ -28,8 +29,9 @@ angular
                         }
                     }
                 }
-            })
-            .state('catalog.show', {
+            });
+
+            $stateProvider.state('catalog.show', {
                 url: 'screencast/:id',
                 views: {
                     '': {
@@ -49,4 +51,6 @@ angular
                     }
                 }
             });
-    });
+        });
+
+})();
