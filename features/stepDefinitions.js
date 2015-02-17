@@ -1,10 +1,7 @@
-var fs = require('fs');
+var assert = require('assert');
 
-var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
-chai.use(chaiAsPromised);
-
-var expect = chai.expect;
+var homepagePage = require('./homepagePage.js');
+var productPage  = require('./productPage.js');
 
 module.exports = function() {
 
@@ -14,68 +11,51 @@ module.exports = function() {
         callback();
     });
 
-    this.Given(/I am on the homepage/, function(next) {
-        browser.get('/');
-        next();
-    });
+    var homepage = new homepagePage();
+    var product  = new productPage();
 
-    this.Then(/the title should equal "([^"]*)"$/, function(text, next) {
-        expect(browser.getTitle())
-            .to.eventually.equal(text)
-            .and.notify(next);
+    this.Given(/I am on the homepage/, function(next) {
+        homepage.get().then(function() {
+            next();
+        });
     });
 
     this.Then(/the sidebar with the summary cart should contains no items/, function(next) {
-        expect(element.all(by.repeater('product in cart.getItems()')))
-            .to.eventually.have.length(0)
-            .and.notify(next);
+        homepage.getSidebarCart().then(function (elements) {
+            assert.equal(elements.length, 0);
+            next();
+        });
     });
 
     this.Then(/I should see "([^"]*)" in the sidebar$/, function(text, next) {
-        expect(element(by.cssContainingText('#sidebar', text)).isPresent())
-            .to.become(true)
-            .and.notify(next);
+        homepage.getSidebarElementFromText(text).isPresent().then(function (status) {
+            assert(status);
+            next();
+        });
     });
 
     this.Then(/I should see ([0-9]*) products/, function(count, next) {
-        expect(element.all(by.repeater('product in catalog')))
-            .to.eventually.have.length(count)
-            .and.notify(next);
+        homepage.getCatalog().then(function (elements) {
+            assert.equal(elements.length, count);
+            next();
+        });
     });
 
     this.Then(/I follow the product link "([^"]*)"$/, function(link, next) {
-        element.all(by.css('#catalog a')).filter(function(element) {
-            return element.getText().then(function(text) {
-                return text === link;
-            });
-        }).then(function(linkElements) {
-            linkElements[0].click().then(function() {
-                next();
-            });
+        homepage.clickToProduct(link).then(function(element) {
+            next();
         });
     });
 
     this.Then(/I should see the product detail page/, function (next) {
-        expect(
-            element(by.css('#catalog')).then(function(element) {
-                element.all(by.css('p')).first().getText().then(function(text) {
-                    expect(text).to.contain('Lorem ipsum dolor sit amet');
-                });
-
-                element.$('button').getText().then(function(text) {
-                    expect(text).to.contain('Add to cart');
-                });
-            })
-        )
-        .to.be.fulfilled
-        .and.notify(next);
+        product.validatePage().then(function() {
+            next();
+        });
     });
 
     this.Then(/I click to the add to cart button/, function(next) {
-        element(by.css('[ng-click="addToCart()"]')).then(function(element) {
-            element.click().then(function() {
-                next();
-            });
+        product.addToCart().then(function() {
+            next();
         });
     });
 

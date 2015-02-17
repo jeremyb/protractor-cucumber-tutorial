@@ -15,10 +15,6 @@ exports.config = {
         'features/*.feature'
     ],
 
-    jasmineNodeOpts: {
-        showColors: true
-    },
-
     cucumberOpts: {
         require: 'features/stepDefinitions.js',
         format: 'pretty' // or summary
